@@ -1,0 +1,36 @@
+install.packages("dplyr")
+install.packages("data.table")
+
+PARA SUMARIZAR :
+
+library(dplyr)
+library(data.table)
+library(ggplot2)
+dados_iris <- iris
+
+library(dplyr)
+media_iris <- summarize (group_by(dados_iris, Species),
+                        media_Sepal_length = mean(Sepal.Length),
+                        media_Sepal_Width = mean(Sepal.Width),
+                        media_Petal_length = mean(Petal.Length),
+                        media_Petal_Width = mean(Petal.Width))
+View(media_iris)
+
+PARA DEIXAR NUMEROS INTEIROS :
+
+
+library(data.table)
+dados_iris_id <- data.table(dados_iris)
+View(dados_iris_id)
+dados_iris_id$Sepal.Length <- as.integer(dados_iris_id$Sepal.Length)
+View(dados_iris_id)
+
+GRAFICO DE PONTINHOS 
+
+library(ggplot2)
+ggplot(data = dados_iris, aes(x = Petal.Width, y = Petal.Length)) +
+  geom_point(aes(color = Species), size = 3)+
+  ggtitle ("Largura e Comprimento de Pétalas") +
+  labs ( x = "Largura de Pétala")+
+  theme_bw()+
+  theme(title = element_text(size = 15, color = "turquoise4"))
